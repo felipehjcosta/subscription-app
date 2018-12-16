@@ -4,10 +4,9 @@ plugins {
     id 'application'
 }
 
-mainClassName = 'MainKt'
-
 group 'com.github.felipehjcosta'
 version '1.0-SNAPSHOT'
+mainClassName = 'io.ktor.server.netty.EngineMain'
 
 repositories {
     mavenCentral()

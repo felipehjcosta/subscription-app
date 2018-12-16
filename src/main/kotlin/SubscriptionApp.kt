@@ -1,20 +1,21 @@
+package com.github.felipehjcosta
+
 import io.ktor.application.Application
 import io.ktor.application.call
 import io.ktor.http.ContentType
 import io.ktor.response.respondText
 import io.ktor.routing.get
 import io.ktor.routing.routing
-import io.ktor.server.engine.embeddedServer
-import io.ktor.server.netty.Netty
 
-fun main() {
-    embeddedServer(Netty, port = 8080, module = Application::module).start()
-}
+fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 
-fun Application.module() {
+@Suppress("unused") // Referenced in application.conf
+@kotlin.jvm.JvmOverloads
+fun Application.module(testing: Boolean = false) {
+
     routing {
         get("/") {
-            call.respondText("Hello World", ContentType.Text.Html)
+            call.respondText("Hello Worldasdsasa", ContentType.Text.Html)
         }
     }
 }
