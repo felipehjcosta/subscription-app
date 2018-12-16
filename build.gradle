@@ -4,7 +4,7 @@ plugins {
     id 'application'
 }
 
-mainClassName = 'MainKt'
+mainClassName = "SubscriptionAppKt"
 
 group 'com.github.felipehjcosta'
 version '1.0-SNAPSHOT'
