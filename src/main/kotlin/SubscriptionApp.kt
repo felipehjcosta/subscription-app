@@ -1,7 +1,9 @@
 import io.ktor.application.Application
 import io.ktor.application.call
 import io.ktor.application.install
+import io.ktor.features.ContentNegotiation
 import io.ktor.features.StatusPages
+import io.ktor.gson.gson
 import io.ktor.http.ContentType
 import io.ktor.http.HttpStatusCode
 import io.ktor.response.respond
@@ -21,6 +23,9 @@ fun Application.module() {
         exception<Throwable> {
             call.respondText(it.localizedMessage, ContentType.Text.Plain, HttpStatusCode.InternalServerError)
         }
+    }
+    install(ContentNegotiation) {
+        gson()
     }
     routing {
         get("/") {
