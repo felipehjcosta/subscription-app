@@ -1,6 +1,9 @@
 import io.ktor.application.Application
 import io.ktor.application.call
+import io.ktor.application.install
+import io.ktor.features.StatusPages
 import io.ktor.http.ContentType
+import io.ktor.http.HttpStatusCode
 import io.ktor.response.respond
 import io.ktor.response.respondText
 import io.ktor.routing.get
@@ -14,12 +17,19 @@ fun main() {
 }
 
 fun Application.module() {
+    install(StatusPages) {
+        exception<Throwable> {
+            call.respondText(it.localizedMessage, ContentType.Text.Plain, HttpStatusCode.InternalServerError)
+        }
+    }
     routing {
         get("/") {
             call.respondText("Hello World", ContentType.Text.Html)
         }
         post("/verify") {
-            call.respond("OK")
+            call.respond(Response(status = "OK"))
         }
     }
 }
+
+data class Response(val status: String)
