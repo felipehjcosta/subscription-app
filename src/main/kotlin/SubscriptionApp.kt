@@ -1,4 +1,5 @@
 @file:Suppress("MatchingDeclarationName")
+
 import io.ktor.application.Application
 import io.ktor.application.call
 import io.ktor.application.install
@@ -7,6 +8,7 @@ import io.ktor.features.StatusPages
 import io.ktor.gson.gson
 import io.ktor.http.ContentType
 import io.ktor.http.HttpStatusCode
+import io.ktor.request.receive
 import io.ktor.response.respond
 import io.ktor.response.respondText
 import io.ktor.routing.get
@@ -33,9 +35,12 @@ fun Application.module() {
             call.respondText("Hello World", ContentType.Text.Html)
         }
         post("/verify") {
-            call.respond(Response(status = "OK"))
+            val request = call.receive<Request>()
+            call.respond(request)
         }
     }
 }
+
+data class Request(val userId: String, val productId: String)
 
 data class Response(val status: String)
