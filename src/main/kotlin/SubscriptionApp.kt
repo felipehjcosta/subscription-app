@@ -18,7 +18,7 @@ import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
 
 fun main() {
-    embeddedServer(Netty, port = 8080, watchPaths = listOf(""), module = Application::module).start()
+    embeddedServer(Netty, port = 8080, watchPaths = listOf("SubscriptionAppkt"), module = Application::module).start()
 }
 
 fun Application.module() {
