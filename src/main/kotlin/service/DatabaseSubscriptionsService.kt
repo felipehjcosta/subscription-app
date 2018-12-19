@@ -1,8 +1,8 @@
 package service
 
-import Subscription
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
+import model.Subscription
 import org.jetbrains.exposed.sql.and
 import org.jetbrains.exposed.sql.select
 
