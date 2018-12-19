@@ -25,7 +25,6 @@ fun Application.module() {
     val api: SubscriptionsApi = DatabaseSubscriptionsApi()
     install(StatusPages) {
         exception<Throwable> {
-            it.printStackTrace()
             call.respondText(it.localizedMessage, ContentType.Text.Plain, HttpStatusCode.InternalServerError)
         }
     }

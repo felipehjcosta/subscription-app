@@ -9,14 +9,16 @@ import org.jetbrains.exposed.sql.transactions.transaction
 
 object DatabaseFacade {
 
+    private const val MAXIMUM_POOL_SIZE = 3
+
     private val database: Database by lazy {
         Database.connect(hikari()).apply {
             transaction(this) {
                 SchemaUtils.create(SubscriptionTable)
 
-                SubscriptionTable.insert {
-                    it[userId] = "42"
-                    it[projectId] = "5"
+                SubscriptionTable.insert { table ->
+                    table[userId] = "42"
+                    table[projectId] = "5"
                 }
             }
         }
@@ -26,7 +28,7 @@ object DatabaseFacade {
         return with(HikariConfig()) {
             driverClassName = "org.h2.Driver"
             jdbcUrl = "jdbc:h2:mem:test"
-            maximumPoolSize = 3
+            maximumPoolSize = MAXIMUM_POOL_SIZE
             isAutoCommit = false
             transactionIsolation = "TRANSACTION_REPEATABLE_READ"
             validate()
@@ -34,8 +36,10 @@ object DatabaseFacade {
         }
     }
 
-    suspend fun <T> dbQuery(block: () -> T): T = withContext(Dispatchers.IO) {
-        transaction(database) { block() }
-    }
-
+    suspend fun <T> dbQuery(block: () -> T): T =
+        withContext(Dispatchers.IO) {
+            transaction(database) {
+                block()
+            }
+        }
 }

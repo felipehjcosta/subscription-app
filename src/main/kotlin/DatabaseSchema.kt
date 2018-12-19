@@ -1,3 +1,5 @@
+@file:Suppress("MatchingDeclarationName")
+
 import org.jetbrains.exposed.dao.IntIdTable
 
 object SubscriptionTable : IntIdTable() {
