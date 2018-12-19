@@ -18,7 +18,7 @@ import service.SubscriptionsService
 import web.subscription
 
 fun main() {
-    embeddedServer(Netty, port = 8080, watchPaths = listOf("SubscriptionAppkt"), module = Application::module).start()
+    embeddedServer(Netty, port = 8080, watchPaths = listOf("main"), module = Application::module).start()
 }
 
 fun Application.module() {
@@ -38,4 +38,3 @@ fun Application.module() {
         subscription(service)
     }
 }
-
