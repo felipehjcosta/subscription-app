@@ -13,8 +13,8 @@ import io.ktor.routing.get
 import io.ktor.routing.routing
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
-import service.DatabaseSubscriptionsApi
-import service.SubscriptionsApi
+import service.DatabaseSubscriptionsService
+import service.SubscriptionsService
 import web.subscription
 
 fun main() {
@@ -22,7 +22,7 @@ fun main() {
 }
 
 fun Application.module() {
-    val api: SubscriptionsApi = DatabaseSubscriptionsApi()
+    val service: SubscriptionsService = DatabaseSubscriptionsService()
     install(StatusPages) {
         exception<Throwable> {
             call.respondText(it.localizedMessage, ContentType.Text.Plain, HttpStatusCode.InternalServerError)
@@ -35,7 +35,7 @@ fun Application.module() {
         get("/") {
             call.respondText("Hello World", ContentType.Text.Html)
         }
-        subscription(api)
+        subscription(service)
     }
 }
 

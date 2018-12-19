@@ -6,7 +6,7 @@ import kotlinx.coroutines.coroutineScope
 import org.jetbrains.exposed.sql.and
 import org.jetbrains.exposed.sql.select
 
-class DatabaseSubscriptionsApi : SubscriptionsApi {
+class DatabaseSubscriptionsService : SubscriptionsService {
 
     override suspend fun findSubscriptions(userId: String, productId: String): Subscription? = coroutineScope {
         val response = async {

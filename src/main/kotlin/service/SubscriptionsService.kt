@@ -2,6 +2,6 @@ package service
 
 import Subscription
 
-interface SubscriptionsApi {
+interface SubscriptionsService {
     suspend fun findSubscriptions(userId: String, productId: String): Subscription?
 }

@@ -7,12 +7,12 @@ import io.ktor.routing.Routing
 import io.ktor.routing.post
 import model.Request
 import model.Response
-import service.SubscriptionsApi
+import service.SubscriptionsService
 
-fun Routing.subscription(subscriptionsApi: SubscriptionsApi) {
+fun Routing.subscription(service: SubscriptionsService) {
     post("/verify") {
         val request = call.receive<Request>()
-        val status = subscriptionsApi.findSubscriptions(request.userId, request.productId)?.let { "OK" } ?: "FAILURE"
+        val status = service.findSubscriptions(request.userId, request.productId)?.let { "OK" } ?: "FAILURE"
         call.respond(Response(status))
     }
 }
