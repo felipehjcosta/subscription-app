@@ -16,6 +16,8 @@ import io.ktor.routing.post
 import io.ktor.routing.routing
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
+import service.DatabaseSubscriptionsApi
+import service.SubscriptionsApi
 
 fun main() {
     embeddedServer(Netty, port = 8080, watchPaths = listOf("SubscriptionAppkt"), module = Application::module).start()

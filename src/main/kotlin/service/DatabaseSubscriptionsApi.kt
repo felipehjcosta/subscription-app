@@ -1,3 +1,6 @@
+package service
+
+import Subscription
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import org.jetbrains.exposed.sql.and
@@ -8,7 +11,7 @@ class DatabaseSubscriptionsApi : SubscriptionsApi {
     override suspend fun findSubscriptions(userId: String, productId: String): Subscription? = coroutineScope {
         val response = async {
             DatabaseFacade.dbQuery {
-                SubscriptionTable
+                service.SubscriptionTable
                     .select { SubscriptionTable.userId eq userId and (SubscriptionTable.projectId eq productId) }
                     .limit(1)
                     .toList()
