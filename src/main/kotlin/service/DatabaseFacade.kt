@@ -6,6 +6,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.SchemaUtils
+import org.jetbrains.exposed.sql.exists
 import org.jetbrains.exposed.sql.insert
 import org.jetbrains.exposed.sql.transactions.transaction
 
@@ -16,11 +17,13 @@ object DatabaseFacade {
     private val database: Database by lazy {
         Database.connect(hikari()).apply {
             transaction(this) {
-                SchemaUtils.create(SubscriptionTable)
+                if (!SubscriptionTable.exists()) {
+                    SchemaUtils.create(SubscriptionTable)
 
-                SubscriptionTable.insert { table ->
-                    table[userId] = "42"
-                    table[projectId] = "5"
+                    SubscriptionTable.insert { table ->
+                        table[userId] = "42"
+                        table[projectId] = "5"
+                    }
                 }
             }
         }
