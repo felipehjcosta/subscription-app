@@ -5,6 +5,7 @@ import kotlinx.coroutines.coroutineScope
 import model.Subscription
 import org.jetbrains.exposed.sql.and
 import org.jetbrains.exposed.sql.select
+import org.jetbrains.exposed.sql.selectAll
 
 class DatabaseSubscriptionsService : SubscriptionsService {
 
@@ -17,6 +18,18 @@ class DatabaseSubscriptionsService : SubscriptionsService {
                     .toList()
                     .map { Subscription(it[SubscriptionTable.userId], it[SubscriptionTable.projectId]) }
                     .firstOrNull()
+            }
+        }
+
+        response.await()
+    }
+
+    override suspend fun all(): List<Subscription> = coroutineScope {
+        val response = async {
+            DatabaseFacade.dbQuery {
+                service.SubscriptionTable
+                    .selectAll()
+                    .map { Subscription(it[SubscriptionTable.userId], it[SubscriptionTable.projectId]) }
             }
         }
 
