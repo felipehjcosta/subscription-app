@@ -22,8 +22,10 @@ fun main() {
 }
 
 fun Application.module() {
+    val api: SubscriptionsApi = DatabaseSubscriptionsApi()
     install(StatusPages) {
         exception<Throwable> {
+            it.printStackTrace()
             call.respondText(it.localizedMessage, ContentType.Text.Plain, HttpStatusCode.InternalServerError)
         }
     }
@@ -36,7 +38,8 @@ fun Application.module() {
         }
         post("/verify") {
             val request = call.receive<Request>()
-            call.respond(request)
+            val status = api.findSubscriptions(request.userId, request.productId)?.let { "OK" } ?: "FAILURE"
+            call.respond(Response(status))
         }
     }
 }
