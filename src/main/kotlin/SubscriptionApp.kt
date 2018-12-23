@@ -1,5 +1,9 @@
 @file:Suppress("MatchingDeclarationName")
 
+import adapters.controllers.subscription
+import adapters.infrastructure.DatabaseSubscriptionsRepository
+import application.ListSubscriptionService
+import domain.SubscriptionsRepository
 import io.ktor.application.Application
 import io.ktor.application.call
 import io.ktor.application.install
@@ -13,16 +17,14 @@ import io.ktor.routing.get
 import io.ktor.routing.routing
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
-import service.DatabaseSubscriptionsService
-import service.SubscriptionsService
-import web.subscription
 
 fun main() {
     embeddedServer(Netty, port = 8080, watchPaths = listOf("main"), module = Application::module).start()
 }
 
 fun Application.module() {
-    val service: SubscriptionsService = DatabaseSubscriptionsService()
+    val repository: SubscriptionsRepository = DatabaseSubscriptionsRepository()
+    val listSubscriptionService = ListSubscriptionService(repository)
     install(StatusPages) {
         exception<Throwable> {
             call.respondText(it.localizedMessage, ContentType.Text.Plain, HttpStatusCode.InternalServerError)
@@ -35,6 +37,6 @@ fun Application.module() {
         get("/") {
             call.respondText("Hello World", ContentType.Text.Html)
         }
-        subscription(service)
+        subscription(listSubscriptionService, repository)
     }
 }

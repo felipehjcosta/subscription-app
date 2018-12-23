@@ -1,6 +1,6 @@
 @file:Suppress("MatchingDeclarationName")
 
-package service
+package adapters.infrastructure
 
 import org.jetbrains.exposed.dao.IntIdTable
 

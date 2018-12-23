@@ -1,4 +1,4 @@
-package service
+package adapters.infrastructure
 
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource

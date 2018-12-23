@@ -1,8 +1,6 @@
-package service
+package domain
 
-import model.Subscription
-
-interface SubscriptionsService {
+interface SubscriptionsRepository {
     suspend fun findSubscriptions(userId: String, productId: String): Subscription?
     suspend fun all(): List<Subscription>
 }
