@@ -25,10 +25,3 @@ fun Routing.subscription(listSubscriptionService: ListSubscriptionService, repos
         }
     }
 }
-
-/*
-* adapters/controllers
-* adapters/infrastructure
-* application
-* domain
-* */
