@@ -1,4 +1,4 @@
-package adapters.infrastructure
+package com.github.felipehjcosta.adapters.infrastructure
 
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource

@@ -1,7 +1,7 @@
-package application
+package com.github.felipehjcosta.application
 
-import domain.Subscription
-import domain.SubscriptionsRepository
+import com.github.felipehjcosta.domain.Subscription
+import com.github.felipehjcosta.domain.SubscriptionsRepository
 import io.mockk.clearMocks
 import io.mockk.coEvery
 import io.mockk.mockk

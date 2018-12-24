@@ -1,9 +1,11 @@
 @file:Suppress("MatchingDeclarationName")
 
-import adapters.controllers.subscription
-import adapters.infrastructure.DatabaseSubscriptionsRepository
-import application.ListSubscriptionService
-import domain.SubscriptionsRepository
+package com.github.felipehjcosta
+
+import com.github.felipehjcosta.adapters.controllers.subscription
+import com.github.felipehjcosta.adapters.infrastructure.DatabaseSubscriptionsRepository
+import com.github.felipehjcosta.application.ListSubscriptionService
+import com.github.felipehjcosta.domain.SubscriptionsRepository
 import io.ktor.application.Application
 import io.ktor.application.call
 import io.ktor.application.install
@@ -19,11 +21,17 @@ import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
 
 fun main() {
-    embeddedServer(Netty, port = 8080, watchPaths = listOf("main"), module = Application::module).start()
+    embeddedServer(
+        Netty,
+        port = 8080,
+        watchPaths = listOf("main"),
+        module = Application::module
+    ).start()
 }
 
 fun Application.module() {
-    val repository: SubscriptionsRepository = DatabaseSubscriptionsRepository()
+    val repository: SubscriptionsRepository =
+        DatabaseSubscriptionsRepository()
     val listSubscriptionService = ListSubscriptionService(repository)
     install(StatusPages) {
         exception<Throwable> {
