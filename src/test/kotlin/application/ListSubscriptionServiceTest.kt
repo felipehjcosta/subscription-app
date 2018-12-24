@@ -12,7 +12,7 @@ import org.spekframework.spek2.style.specification.describe
 import kotlin.test.assertEquals
 
 object ListSubscriptionServiceTest : Spek({
-    describe("a service") {
+    describe("execute service") {
         val fakeSubscription = Subscription("42", "5")
         val mockRepository by memoized { mockk<SubscriptionsRepository>() }
         val service by memoized { ListSubscriptionService(mockRepository) }
