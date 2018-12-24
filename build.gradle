@@ -28,6 +28,7 @@ dependencies {
     testImplementation "org.spekframework.spek2:spek-dsl-jvm:2.0.0-rc.1"
     testRuntimeOnly "org.spekframework.spek2:spek-runner-junit5:2.0.0-rc.1"
     testImplementation "io.mockk:mockk:1.8.13.kotlin13"
+    testCompile "io.ktor:ktor-server-test-host:1.0.1"
 }
 
 compileKotlin {
