@@ -1,3 +1,3 @@
 package com.github.felipehjcosta.domain
 
-data class Subscription(val userId: String, val projectId: String)
+data class Subscription(val userId: String, val productId: String)

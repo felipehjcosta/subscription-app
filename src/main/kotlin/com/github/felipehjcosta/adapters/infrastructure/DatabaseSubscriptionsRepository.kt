@@ -14,13 +14,13 @@ class DatabaseSubscriptionsRepository : SubscriptionsRepository {
         val response = async {
             DatabaseFacade.dbQuery {
                 com.github.felipehjcosta.adapters.infrastructure.SubscriptionTable
-                    .select { SubscriptionTable.userId eq userId and (SubscriptionTable.projectId eq productId) }
+                    .select { SubscriptionTable.userId eq userId and (SubscriptionTable.productId eq productId) }
                     .limit(1)
                     .toList()
                     .map {
                         Subscription(
                             it[SubscriptionTable.userId],
-                            it[SubscriptionTable.projectId]
+                            it[SubscriptionTable.productId]
                         )
                     }
                     .firstOrNull()
@@ -38,7 +38,7 @@ class DatabaseSubscriptionsRepository : SubscriptionsRepository {
                     .map {
                         Subscription(
                             it[SubscriptionTable.userId],
-                            it[SubscriptionTable.projectId]
+                            it[SubscriptionTable.productId]
                         )
                     }
             }

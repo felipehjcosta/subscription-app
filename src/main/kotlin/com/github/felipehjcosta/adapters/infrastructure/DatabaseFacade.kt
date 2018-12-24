@@ -22,7 +22,7 @@ object DatabaseFacade {
 
                     SubscriptionTable.insert { table ->
                         table[userId] = "42"
-                        table[projectId] = "5"
+                        table[productId] = "5"
                     }
                 }
             }
