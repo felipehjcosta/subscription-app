@@ -19,4 +19,6 @@ jobs:
     - stage: lint
       script: ./gradlew detekt
     - stage: test
-      script: ./gradlew test
+      script: ./gradlew test jacocoTestReport
+      after_success:
+        - bash <(curl -s https://codecov.io/bash)
