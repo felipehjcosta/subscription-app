@@ -45,7 +45,7 @@ fun Application.moduleWithDependencies(
         get("/") {
             call.respondText("Hello World", ContentType.Text.Html)
         }
-        route("/subscription") {
+        route("/subscriptions") {
             get("/") {
                 call.respond(listSubscriptionService.execute().subscriptions)
             }

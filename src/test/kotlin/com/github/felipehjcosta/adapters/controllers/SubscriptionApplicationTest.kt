@@ -41,7 +41,7 @@ object SubscriptionApplicationTest : Spek({
                     mockListSubscriptionService
                 )
             }) {
-                with(handleRequest(HttpMethod.Get, "subscription")) {
+                with(handleRequest(HttpMethod.Get, "subscriptions")) {
                     assertEquals(HttpStatusCode.OK, response.status())
                     assertEquals("""[{"userId":"42","productId":"5"}]""", response.content)
                 }
@@ -63,7 +63,7 @@ object SubscriptionApplicationTest : Spek({
                         mockListSubscriptionService
                     )
                 }) {
-                    with(handleRequest(HttpMethod.Post, "subscription/verify") {
+                    with(handleRequest(HttpMethod.Post, "subscriptions/verify") {
                         setBody("""{"userId":"42","productId":"6"}""")
                     }) {
                         assertEquals(HttpStatusCode.NotFound, response.status())
@@ -83,7 +83,7 @@ object SubscriptionApplicationTest : Spek({
                         mockListSubscriptionService
                     )
                 }) {
-                    with(handleRequest(HttpMethod.Post, "subscription/verify") {
+                    with(handleRequest(HttpMethod.Post, "subscriptions/verify") {
                         setBody("""{"userId":"42","productId":"5"}""")
                     }) {
                         assertEquals(HttpStatusCode.OK, response.status())
