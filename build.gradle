@@ -18,12 +18,7 @@ repositories {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
-    implementation("io.ktor:ktor-server-netty:1.1.0") {
-        exclude group: 'io.ktor', module: 'ktor-utils-native'
-        exclude group: 'io.ktor', module: 'ktor-http-native'
-    }
-    compile "io.ktor:ktor-utils-jvm:1.1.0"
-    compile "io.ktor:ktor-http-jvm:1.1.0"
+    implementation "io.ktor:ktor-server-netty:1.1.1"
     implementation "io.ktor:ktor-gson:1.0.1"
     implementation "ch.qos.logback:logback-classic:1.2.3"
     implementation "com.h2database:h2:1.4.197"
