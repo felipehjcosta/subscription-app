@@ -9,6 +9,7 @@ import com.github.felipehjcosta.model.Request
 import io.ktor.application.Application
 import io.ktor.application.call
 import io.ktor.application.install
+import io.ktor.features.CallLogging
 import io.ktor.features.ContentNegotiation
 import io.ktor.features.StatusPages
 import io.ktor.gson.gson
@@ -38,6 +39,7 @@ fun Application.moduleWithDependencies(
             call.respondText(it.localizedMessage, ContentType.Text.Plain, HttpStatusCode.InternalServerError)
         }
     }
+    install(CallLogging)
     install(ContentNegotiation) {
         gson()
     }
