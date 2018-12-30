@@ -6,7 +6,7 @@ plugins {
     id "io.gitlab.arturbosch.detekt" version "1.0.0-RC12"
 }
 
-mainClassName = "com.github.felipehjcosta.SubscriptionAppKt"
+mainClassName = "io.ktor.server.netty.DevelopmentEngine"
 
 group 'com.github.felipehjcosta'
 version '1.0-SNAPSHOT'
