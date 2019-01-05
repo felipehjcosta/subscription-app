@@ -18,8 +18,8 @@ import org.spekframework.spek2.Spek
 import org.spekframework.spek2.style.specification.describe
 import kotlin.test.assertEquals
 
-object SubscriptionApplicationTest : Spek({
-    describe("Application") {
+object SubscriptionModuleTest : Spek({
+    describe("Module") {
         val fakeSubscription = Subscription("42", "5")
         val mockVerifySubscriptionService by memoized { mockk<VerifySubscriptionService>() }
         val mockListSubscriptionService by memoized { mockk<ListSubscriptionService>() }
