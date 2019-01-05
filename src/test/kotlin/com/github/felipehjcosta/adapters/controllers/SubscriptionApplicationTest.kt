@@ -18,8 +18,8 @@ import org.spekframework.spek2.Spek
 import org.spekframework.spek2.style.specification.describe
 import kotlin.test.assertEquals
 
-object SubscriptionModuleTest : Spek({
-    describe("Module") {
+object SubscriptionApplicationTest : Spek({
+    describe("Application") {
         val fakeSubscription = Subscription("42", "5")
         val mockVerifySubscriptionService by memoized { mockk<VerifySubscriptionService>() }
         val mockListSubscriptionService by memoized { mockk<ListSubscriptionService>() }
@@ -36,7 +36,8 @@ object SubscriptionModuleTest : Spek({
             )
 
             withTestApplication({
-                moduleWithDependencies(
+                module()
+                routeWithDependencies(
                     mockVerifySubscriptionService,
                     mockListSubscriptionService
                 )
@@ -58,7 +59,8 @@ object SubscriptionModuleTest : Spek({
                 }
 
                 withTestApplication({
-                    moduleWithDependencies(
+                    module()
+                    routeWithDependencies(
                         mockVerifySubscriptionService,
                         mockListSubscriptionService
                     )
@@ -78,7 +80,8 @@ object SubscriptionModuleTest : Spek({
                 } returns VerifySubscriptionServiceResponse.VerifySubscriptionServiceExists
 
                 withTestApplication({
-                    moduleWithDependencies(
+                    module()
+                    routeWithDependencies(
                         mockVerifySubscriptionService,
                         mockListSubscriptionService
                     )
